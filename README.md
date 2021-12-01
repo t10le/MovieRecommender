@@ -1,6 +1,10 @@
 # MovieRecommender
 ## Notes
 - Preprend "tt0" to IMDB ID ; for example: https://imdb-api.com/en/API/Images/k_oe50pt39/tt0102744/Short
+- 3 Main Datasets: Links.csv, Movies.csv, Ratings.csv from grouplens.org. We will use only Links and Ratings.csv for backend.
+- 
+
+
 ## Links
 DataBase:
 https://grouplens.org/datasets/movielens/
