@@ -8,6 +8,7 @@
 - Build test case automation to generate various user profiles
 - Build UI and connect IMDB API
 - Stress-test against larger dataset (25 Million), since speed is currently excellent
+- Create a function to generate similarity matrix for documentation
 
 
 ## Links
