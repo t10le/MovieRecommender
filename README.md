@@ -10,6 +10,14 @@
 - Stress-test against larger dataset (25 Million), since speed is currently excellent
 - Create a function to generate similarity matrix for documentation
 
+## Doc Requirements
+- Source code
+- Program/Website
+- Result files
+- Collected target user data
+- Collected similarity matrix
+- Any other interesting facts
+
 
 ## Links
 DataBase:
