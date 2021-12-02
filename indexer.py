@@ -27,8 +27,8 @@ DATASTRUCTURE:
     }
 """
 
-def parse_ratings():
-    csvfile = open('../ml-latest-small/ratings.csv', newline='')
+def parse_ratings(csv_name : str):
+    csvfile = open(csv_name, newline='')
     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
     
     database = {}
@@ -166,7 +166,7 @@ def compute_aggregate(similar_users : dict, database : dict, movieId: int) -> fl
     return 0.0
 
 if __name__ == '__main__':
-    database = parse_ratings()
+    database = parse_ratings('./ml-latest-small/ratings.csv')
     user_in = {114709: 2, 4262: 4, 50872: 2, 6537: 5, 158872: 3, 6365: 4} # User's movie 
     similar_users = find_sim(user_in, database)
     n_movies = find_similar_movies(similar_users,database,user_in)
