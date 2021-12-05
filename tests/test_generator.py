@@ -63,8 +63,8 @@ def generate_random_movies(genre: str, weight: int, M: int, movies_by_genre: dic
     :param genre: Selects which key as movie genre set from dictionary to retrieve movies from.
     :param weight: Pick -1, 0 or 1 for user weight or preference of a movie genre.
     :param M: The upperbound limit for how many movies to randomly select from movie genre set.
-    :param movies_by_genre: The dictionary containing a list of movieIds in genre;
-        {'Comedy': [93, 6596, 7193, 118930]}
+    :param movies_by_genre: The dictionary containing a list of movieIds in genre
+    {'Comedy': [93, 6596, 7193, 118930]}.
     """
     # == Weight Criteria ==
     #   -1  -> User hates this genre.
@@ -79,20 +79,49 @@ def generate_random_movies(genre: str, weight: int, M: int, movies_by_genre: dic
     return [(int(movie), random.randrange(score[0], score[1])) for movie in random.sample(movies_by_genre[genre], k=random.randrange(1, M+1))]
 
 
+def create_user_profile(M: int, rand_genres: list, movies_by_genre: dict) -> dict:
+    """Returns a dictionary containing the target user's movies and their respective rating: {movieID, rating}.
+
+    ## Examples
+        >>> create_user_profile([('Crime', -1), ('Romance', 0), ('Action', 1)])
+        {175569: 1, 143559: 0, 165347: 0, 3102: 2, 4584: 3, 100527: 2, 76743: 5, 122882: 4}
+
+    :param rand_genres: The list of tuples containing randomly selected genres and their random weight preference
+    [('Comedy', 1), ('Action', -1)].
+    """
+    target_user = {}
+    for tupe in rand_genres:
+        target_user.update(
+            dict(generate_random_movies(tupe[0], tupe[1], M, movies_by_genre)))
+    return target_user
+
+
+def generate_user_profiles(N: int, M: int, movies_by_genre: dict) -> dict:
+    """
+    ## Examples
+        >>> generate_user_profiles(1, 3, init_movie_dict(reader))
+        {1: {8795: 1, 122902: 2, 2628: 3, 6944: 3, 2835: 0, 2451: 5}}
+    :param N:
+    :param M:
+    :param moves_by_genre:
+    """
+    user_profiles = {}
+    for user in range(N):
+        user_profiles[user] = create_user_profile(
+            M, generate_random_preferences(), movies_by_genre)
+    return user_profiles
+
+
 with open('../data/movies.csv', newline='') as f:
     reader = csv.reader(f, delimiter=',', quotechar='|')
     next(reader, None)  # Skips header row
     movies = init_movie_dict(reader)
 
-    # Single user
-    target_user = {}
-    random_genres = generate_random_preferences()
-    for tupe in random_genres:
-        target_user.update(
-            dict(generate_random_movies(tupe[0], tupe[1], 3, movies)))
-
 
 if __name__ == '__main__':
     # print(generate_random_movies('Comedy', 1, 5, movies))
     # print(generate_random_preferences())
-    print(target_user)
+    # print(create_user_profile([('Crime', -1), ('Romance', 0), ('Action', 1)]))
+    a = generate_user_profiles(1000, 10, movies)
+    for key, value in a.items():
+        print(f'key: {key}\nvalue: {value}\n\n')
