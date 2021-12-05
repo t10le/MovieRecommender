@@ -11,13 +11,13 @@ function MovieListing(props)
         <Container>
         <Row xs={1} md={2} className="g-4">
         {Object.keys(props.movies).map((movieId, _) => (
-          <Col md={4}>
+          <Col md={3}>
             <Card>
               <Card.Img variant="top" 
                         src={`https://image.tmdb.org/t/p/original${props.movies[movieId].poster_path}`}/>
               <Card.Body>
                 <Card.Title>{props.movies[movieId].title}</Card.Title>
-                <Card.Text>{props.movies[movieId].overview}</Card.Text>
+                <Card.Text>{props.movies[movieId].overview.substring(0,256)}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -30,16 +30,24 @@ function MovieListing(props)
 function Recommended()
 {
     const [movies, setMovies] = useState({});
+    const navigate = useNavigate();
+
+
     useEffect(() => {
         axios.get('/usr-recommended').then((res) => {
           setMovies(res.data.movies)
-          console.log(res.data.movies['24226'])
         })
       }, [])
+
+    const redirectHome = () => {
+        navigate('/home')
+    }
+
     return(
         <div>
             <h1>Here are your Recommended Movies: </h1>
             <MovieListing movies={movies}></MovieListing>
+            <Button onClick={redirectHome}>Rate More Movies</Button>
         </div>
     )
 }

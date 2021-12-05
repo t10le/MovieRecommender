@@ -47,8 +47,8 @@ def collect_movie_data(movies : list):
         url = f"https://api.themoviedb.org/3/movie/{movieId}?api_key=253dbcd7c40a74af299b5c8209a7e797"
         
         response = requests.request("GET", url)
-        
-        movie_data[movieId] = response.json()
+        if "title" in response.json():
+            movie_data[movieId] = response.json()
 
     return movie_data
 

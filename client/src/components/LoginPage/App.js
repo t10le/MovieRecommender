@@ -75,7 +75,8 @@ function App() {
       </Form>
       <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
         <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+          <img src="https://static.thenounproject.com/png/415502-200.png" 
+                className="rounded me-2" alt="" width="25" height="25"/>
           <strong className="me-auto">Bot</strong>
           <small>Now</small>
         </Toast.Header>
