@@ -1,10 +1,10 @@
 import unittest
-from indexer import *
+from indexerTestVersion import *
 
 
 class testSimilarity(unittest.TestCase):
     def test_volume_1(self):
-        database = parse_ratings()
+        database = parse_ratings('./sample.csv')
         user_in = {1: 3, 2: 4, 4: 5, 5: 5} # User's movie 
         similar_users = find_sim(user_in, database)
         n_movies = find_similar_movies(similar_users,database,user_in)
@@ -20,7 +20,7 @@ class testSimilarity(unittest.TestCase):
             [3, 6, 7, 8, 10]
         )
         self.assertEqual(recommendations, 
-            {3: 4.229062584662965, 6: 4.0, 7: 5.0, 8: 2.0, 10: 2.027916553782713})
+            {3: 4.229062584662965, 10: 2.027916553782713, 8: 2.0})
 
 if __name__ == '__main__':
     test = testSimilarity()

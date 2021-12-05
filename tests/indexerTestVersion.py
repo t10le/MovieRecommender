@@ -2,6 +2,8 @@ from typing import *
 import math
 import csv
 
+# NOTE: This is a test updatable version which can be recopied when indexer is changed
+
 """
 DATASTRUCTURE:
 

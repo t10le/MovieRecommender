@@ -4,7 +4,7 @@ def register_user(user_name: str, password: str):
         f = open('../data/logins.txt', 'a')
         f.write(f"{user_name},{password},\n")
         f.close()
-        return True
+        return {}
     except:
         return False
 
@@ -38,7 +38,7 @@ def export_ratings(ratings : dict) -> str:
         final_str += f"{movieId} {ratings[movieId]}\t"
     return final_str + '\n'
 
-def update_ratings(user_name: str, password: str, ratings : dict) -> bool:
+def update_ratings(user_name: str, password: str, ratings : dict):
     f = open('../data/logins.txt', 'r')
     lines = f.readlines()
     f.close()

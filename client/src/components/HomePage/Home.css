@@ -1,3 +1,12 @@
-.movie-disp {
-    
+.posters {
+    width: 60%;
+}
+
+.submission {
+    margin: auto;
+}
+
+.rated {
+    margin: auto;
+    text-align: center;
 }
