@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
+
 .posters {
-    width: 60%;
+    width: 80%;
 }
 
 .submission {
@@ -9,4 +13,50 @@
 .rated {
     margin: auto;
     text-align: center;
+    background-color: brown;
+    padding: 6px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 800;
+}
+
+.title-page {
+    font-family: 'Lobster', cursive;
+    font-size: 45px;
+}
+
+.intro {
+    padding: 30px;
+}
+
+.spinner {
+    width: 3em;
+    height: 3em;
+}
+
+.loading {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 30px;
+}
+
+.load-section {
+    margin: auto;
+}
+
+.btn-region {
+    float: right;
+    padding: 30px;
+}
+
+.submission {
+    font-family: 'Lora', serif;
+    font-size: 25px;
+    background-color: brown;
+    box-shadow: 2px 2px black;
+    border: none;
+}
+
+.submission:hover {
+    background-color: brown;
+    box-shadow: 4px 4px black;
 }

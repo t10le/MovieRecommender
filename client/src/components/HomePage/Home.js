@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Card, Col, Container, Button, ButtonGroup } from 'react-bootstrap';
+import { Row, Card, Col, Container, Button, ButtonGroup, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router'
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css'
+import NavBar from '../NavBar/navbar';
 
 function Home() {
   const [movies, setMovies] = useState([])
   const [ratings, setRatings] = useState({})
+  const [isLoaded, setLoaded] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('/movies').then((res) => {
       setMovies(res.data.movies)
+      setLoaded(true)
     })
   }, [])
 
@@ -32,8 +35,20 @@ function Home() {
 
   return (
     <div>
-      Home Page
-      <Container className="posters">
+      <NavBar/>
+      <div className="intro">
+        <h2 className="title-page">Welcome to the Movie Recommender System</h2>
+        <p>
+          Here are some movies which you have not rated. Rate as many movies possible
+          on a scale of 0 to 5, then click <strong>Get Recommendations</strong>. If you want <br/>
+          to see your recommendations based on previous ratings only, then click the tab 
+           <strong> My Recommended</strong>.
+          
+        </p>
+      </div>
+      {isLoaded ? 
+        <>
+        <Container className="posters">
         <Row xs={1} md={2} className="g-4">
         {Object.keys(movies).map((movieId, _) => (
           <Col md={4}>
@@ -64,10 +79,23 @@ function Home() {
         </Row>
       </Container>
       <br/>
-      <div className="submission">
-        <h1>Send Ratings</h1>
-        <Button onClick={sendRatings}>Send</Button>
-      </div>
+      <div className="btn-region">
+        <Button onClick={sendRatings} className="submission">Get Recommendations</Button>
+      </div> 
+      </>:
+      <Container>
+        <Row className="load-section">
+          <Col xs={4}>
+            <strong className="loading">Loading Movie Data...</strong>
+          </Col>
+          <Col xs={1}>
+            <Spinner animation="border" role="status" className="spinner">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </Col>
+        </Row>
+      </Container>
+      }
     </div>
   );
 }

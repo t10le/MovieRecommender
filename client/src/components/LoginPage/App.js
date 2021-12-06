@@ -52,8 +52,8 @@ function App() {
   }
 
   return (
-    <div className="signon-form">
-      <Form>
+    <div className="signon">
+      <Form className="signon-form">
         <Form.Group className="mb-3" controlId="formGroupEmail">
           <Form.Label>Username</Form.Label>
           <Form.Control type="text" placeholder="Enter username" 

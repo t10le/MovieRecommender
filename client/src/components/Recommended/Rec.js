@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Card, Col, Container, Button } from 'react-bootstrap';
+import { Row, Card, Col, Container, Button, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router'
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Rec.css'
+import NavBar from '../NavBar/navbar';
 
 function MovieListing(props)
 {
@@ -31,11 +32,13 @@ function Recommended()
 {
     const [movies, setMovies] = useState({});
     const navigate = useNavigate();
+    const [isLoaded, setLoaded] = useState(false);
 
 
     useEffect(() => {
         axios.get('/usr-recommended').then((res) => {
           setMovies(res.data.movies)
+          setLoaded(true)
         })
       }, [])
 
@@ -45,9 +48,29 @@ function Recommended()
 
     return(
         <div>
-            <h1>Here are your Recommended Movies: </h1>
-            <MovieListing movies={movies}></MovieListing>
-            <Button onClick={redirectHome}>Rate More Movies</Button>
+            <NavBar></NavBar>
+            <div className="intro">
+              <h1 className="title-page">Here are your Recommended Movies: </h1>
+            </div>
+            {isLoaded ? <>
+              <MovieListing movies={movies}></MovieListing>
+              <div className="btn-region">
+                <Button onClick={redirectHome} className="submission">Rate More Movies</Button>
+              </div>
+            </> : 
+            <Container>
+              <Row className="load-section">
+                <Col xs={4}>
+                  <strong className="loading">Loading Movie Data...</strong>
+                </Col>
+                <Col xs={1}>
+                  <Spinner animation="border" role="status" className="spinner">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </Col>
+              </Row>
+            </Container>
+            }
         </div>
     )
 }

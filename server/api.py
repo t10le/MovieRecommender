@@ -74,9 +74,21 @@ def get_movies():
 
 @app.route('/usr-recommended', methods=['GET'])
 def get_recommended_movie_data():
+    global recommendations
+    if recommendations == {}:
+        # Run Rating System
+        try:
+            similar_users = find_sim(user_ratings, db)
+            n_movies = find_similar_movies(similar_users,db,user_ratings)
+            recommendations = compute_movie_recommendation(n_movies, similar_users, db)
+        except:
+            return {"status" : "failed"}
     tmdbIds = populate_movies(list(recommendations.keys()), links)
     return { 'movies' : collect_movie_data(tmdbIds) }
 
+@app.route('/usr-info')
+def get_user_info():
+    return { "user_name": user_name }
 
 
 
