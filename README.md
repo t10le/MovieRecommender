@@ -14,8 +14,8 @@
 - Source code
 - Program/Website
 - Result files
-- Collected target user data
-- Collected similarity matrix
+- Collected target user data (dict input {123: 4.0, 12: 3.5}
+- Collected similarity matrix (find_sim func)
 - Any other interesting facts
 
 
