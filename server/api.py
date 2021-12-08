@@ -40,11 +40,12 @@ def get_signin_data():
     so_data = request.get_json()
     success = sign_in(so_data["userName"], so_data["password"])
     if success is not False:
-        global user_ratings, db, user_name, password
+        global user_ratings, db, user_name, password, recommendations
         user_name = so_data["userName"]
         password = so_data["password"]
         user_ratings = success
         db = parse_ratings('../data/ratings.csv')
+        recommendations = {}
         return {"status" : "success"}
     return {"status" : "failed"}
 
@@ -53,11 +54,12 @@ def get_register_user():
     register_data = request.get_json()
     success = register_user(register_data["userName"], register_data["password"])
     if success is not False:
-        global user_ratings, db, user_name, password
+        global user_ratings, db, user_name, password, recommendations
         user_name = register_data["userName"]
         password = register_data["password"]
         user_ratings = success
         db = parse_ratings('../data/ratings.csv')
+        recommendations = {}
         return {"status" : "success"}
 
     return {"status" : "failed"}

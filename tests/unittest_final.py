@@ -1,6 +1,5 @@
 import unittest
 from indexerTestVersion import *
-from profile_generator import *
 
 
 class testSimilarity(unittest.TestCase):
