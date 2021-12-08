@@ -13,14 +13,22 @@ Copy the github repository's URL, then navigate to a terminal on your local mach
 
 ## Installing Dependencies
 
-React requires npm packages to be able to function correctly, these packages can be installed as followed:
+React requires npm packages to be able to function correctly, these packages can be installed within a terminal as followed:
 
 ```
  cd client/
  npm install
 ```
 
-Python has packages required to run as well such as Flask, however the folder /server/venv has all the packages required for the environment to function correctly.
+The packages required to run the Python API can be found in the requirements.txt file, ensuring that a python version is preinstalled. To begin, Open a new terminal within the project, then follow the steps outlined to install the dependencies for Python:
+
+```
+ cd server/
+ pip install virtualenv
+ virtualenv venv
+ source venv/bin/activate
+ pip install -r requirements.txt
+```
 
 ## Running the Program
 
