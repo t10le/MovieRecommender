@@ -4,11 +4,9 @@
 - 3 Main Datasets: Links.csv, Movies.csv, Ratings.csv from grouplens.org. We will use only Links and Ratings.csv for backend.
 
 ## To-do
-- Test adjusted weight sum
-- Build test case automation to generate various user profiles
-- Build UI and connect IMDB API
-- Stress-test against larger dataset (25 Million), since speed is currently excellent
-- Create a function to generate similarity matrix for documentation
+- Finish Documentation
+- Take ss of average execution time, other metrics like DB
+- Take ss of UI include into github/report
 
 ## Doc Requirements
 - Source code
