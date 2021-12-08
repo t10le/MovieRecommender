@@ -105,7 +105,8 @@ def find_sim(user_input: dict, database: dict) -> dict:
         298: 0.9449111825230682, 354: 0.24019223070763066, 365: 1.0, 380: 0.5, 
         438: 1.0, 452: 1.0, 489: 1.0, 561: 0.05263157894736842}
 
-    :param user_input: The user's selection of movieIDs and their ratings for them.
+    :param user_input: The user's selection of userIDs and their similarity score relative
+    to the target user. 
     :param database: The MovieLens database containing other user profiles with their 
     relative selection of movieIDs and relative ratings {MovieID: Rating}.
     """
